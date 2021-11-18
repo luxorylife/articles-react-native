@@ -1,12 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { gStyle } from "./styles/style";
+import { useFonts } from "expo-font";
+import Navigation from "./components/Navigation";
+
+// const fonts = () =>
+//   Font.loadAsync({
+//     "poppins-reg": require("./assets/Fonts/Poppins-Regular"),
+//     "poppins-thin-italic": require("./assets/Fonts/Poppins-ThinItalic"),
+//   });
 
 export default function App() {
+  const [loaded] = useFonts({
+    "poppins-reg": require("./assets/Fonts/Poppins-Regular.ttf"),
+    "poppins-thin-italic": require("./assets/Fonts/Poppins-ThinItalic.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={gStyle.main}>
+      <Navigation />
     </View>
   );
 }
@@ -14,8 +30,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
