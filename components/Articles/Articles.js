@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { Item } from "./Item";
 
 const Articles = ({ navigation, route }) => {
+  const shortid = require("shortid");
+
   return (
     <View style={style.main}>
       <FlatList
@@ -17,9 +13,10 @@ const Articles = ({ navigation, route }) => {
           <TouchableOpacity
             onPress={() => navigation.navigate("Article", item)}
           >
-            <Text>{item.title}</Text>
+            <Item item={item} />
           </TouchableOpacity>
         )}
+        keyExtractor={(item) => shortid.generate()}
       />
     </View>
   );
